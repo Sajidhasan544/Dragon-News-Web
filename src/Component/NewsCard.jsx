@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router';
 
 const NewsCard = ({ newit }) => {
-    const { title, author, image_url, details, total_view, rating, tags } = newit;
+    const {id, title, author, image_url, details, total_view, rating, tags } = newit;
     const formattedDate = new Date(author.published_date).toLocaleDateString();
     const [readMore, setReadMore] = useState(false);
 
@@ -34,12 +35,12 @@ const NewsCard = ({ newit }) => {
                     {readMore ? details : `${details.slice(0, 200)}...`}
                 </p>
 
-                <button
+                <Link to={`/news-details/${id}`}
                     onClick={toggleReadMore}
                     className="btn btn-sm btn-outline btn-primary mt-2"
                 >
                     {readMore ? 'Read Less' : 'Read More'}
-                </button>
+                </Link>
 
                 <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-gray-600">
                     <span><strong>Views:</strong> {total_view}</span>
